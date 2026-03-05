@@ -1,101 +1,64 @@
-# 🌱 SeedGenomics: Advanced Morphological Analysis
+🧬 SeedGenomics: Neural Morphological Classifier
+SeedGenomics is an AI-driven analytical suite designed for the automated taxonomic classification of pumpkin seed varieties (Çerçevelik and Ürgüp Sivrisi). By transitioning from subjective manual sorting to objective Quantitative Morphological Analysis, this system ensures industrial-grade precision in seed phenotyping.
 
-![Status](https://img.shields.io/badge/Status-Operational-success?style=flat-square)
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=flat-square&logo=python)
-![Flask](https://img.shields.io/badge/Framework-Flask-black?style=flat-square&logo=flask)
-![ML](https://img.shields.io/badge/Model-Random%20Forest-orange?style=flat-square)
-![Accuracy](https://img.shields.io/badge/Accuracy-98.8%25-green?style=flat-square)
+💎 Key Highlights
+Core Logic: Utilizes a Random Forest Ensemble learner to map non-linear relationships between seed geometry and genetic variety.
 
-**SeedGenomics** is an intelligent, web-based classification system designed to distinguish between pumpkin seed varieties (*Çerçevelik* and *Ürgüp Sivrisi*) with high precision. 
+The Interface: A bespoke Glassmorphic Dashboard featuring a "Split-Pane" architecture—merging a high-contrast dark-mode analytics engine with a clean user input terminal.
 
-Moving beyond traditional manual inspection, this project leverages machine learning to analyze quantitative morphological features—such as Area, Perimeter, and Aspect Ratio—processing them through a custom **Inference Engine** to provide instant taxonomic classification.
+Performance: Ultra-low latency inference engine (Sub-20ms) powered by a Flask-optimized micro-backend.
 
----
+Data Integrity: Integrated MinMaxScaler pipeline ensures that feature magnitude (e.g., Area vs. Solidity) doesn't bias the classification outcome.
 
-## 🚀 Features
+🛠️ The Architecture
+Tech Stack
+Intelligence: Scikit-learn, NumPy, Pandas (Random Forest Regressor/Classifier)
 
-* **⚡ Real-Time Inference:** Optimized Flask backend delivers predictions in **<20ms**.
-* **🧠 Advanced AI Model:** Powered by a **Random Forest Classifier** optimized via Grid Search, achieving **98.8% accuracy**.
-* **🎨 Modern UI/UX:** Features a premium **Glassmorphism** design with a split-screen layout (Dark Mode Dashboard + Light Mode Input).
-* **📊 Visual Inference Engine:** A custom-built visualizer that simulates the algorithmic processing of geometric data with pulse animations.
-* **📱 Responsive Design:** Fully functional across desktop and mobile devices.
+Infrastructure: Python 3.x & Flask WSGI Server
 
----
+Frontend: Modern CSS3 (Glassmorphism), Vanilla JS (Interactions), HTML5
 
-## 🛠️ Tech Stack
-
-* **Frontend:** HTML5, CSS3 (Custom Glassmorphism & Animations), JavaScript
-* **Backend:** Python 3.x, Flask Web Framework
-* **Machine Learning:** Scikit-learn, Pandas, NumPy
-* **Data Processing:** Jupyter Notebook (`.ipynb`)
-
----
-
-## 📂 Project Structure
-
-Ensure your project folder matches this structure exactly:
-
-```text
+Project Topology
+Plaintext
 SeedGenomics/
-│
-├── static/
-│   └── css/
-│       └── style.css          # Custom styling for Glassmorphism & Animations
-│
+├── static/css/style.css       # Glassmorphism UI Logic & Keyframe Animations
 ├── templates/
-│   ├── index.html             # Main Dashboard & Input Interface
-│   └── predict.html           # Result Display Card
-│
-├── app.py                     # Main Flask Application Server
-├── model_building.ipynb       # Jupyter Notebook for Training & Analysis
-├── model.pkl                  # Trained Random Forest Model (Auto-generated)
-├── scaler.pkl                 # Feature Scaler (Auto-generated)
-├── Pumpkin_Seeds_Dataset.xlsx # Raw Dataset Source
-└── README.md                  # Project Documentation
+│   ├── index.html            # Primary Analytic Dashboard
+│   └── predict.html          # Dynamic Result Verification Card
+├── app.py                    # Flask Gateway & Model Wrapper
+├── model_building.ipynb      # Feature Engineering & Hyperparameter Tuning
+├── model.pkl                 # Serialized Random Forest Model
+├── scaler.pkl                # Pre-fitted Feature Normalization Pipeline
+└── Pumpkin_Seeds_Dataset.xlsx# Primary Morphological Dataset
+🧠 Algorithmic Workflow
+The system processes data through a four-stage pipeline to ensure the 98.8% accuracy threshold is maintained:
 
-⚙️ Installation & Setup
-1. Prerequisites
-Ensure you have Python installed. You will also need the following libraries:
+Normalization: Input vectors (Area, Perimeter, etc.) are transformed using the saved scaler.pkl to align with the training distribution.
 
+Ensemble Inference: The Random Forest model aggregates votes from multiple decision trees to minimize variance and prevent overfitting.
+
+Visual Processing: The frontend initiates a "Geometry Computation" pulse, providing immediate UX feedback while the backend calculates the result.
+
+Classification: The output is decoded from binary (0/1) to the specific biological variety and rendered on the results card.
+
+🚀 Deployment & Usage
+1. Environment Setup
 Bash
 pip install flask scikit-learn pandas numpy openpyxl
-2. Train the Model
-Before running the app, you must generate the trained model file.
+2. Model Initialization
+Run all cells in model_building.ipynb to execute the Grid Search optimization and generate your local .pkl binaries.
 
-Open model_building.ipynb in VS Code or Jupyter.
-
-Run all cells to process the dataset and train the Random Forest.
-
-Verify that model.pkl and scaler.pkl have appeared in your project folder.
-
-3. Run the Application
-Open your terminal in the project folder and run:
-
+3. Launching the Engine
 Bash
 python app.py
-4. Access the Interface
-Open your web browser and navigate to the local server address shown in the terminal (usually):
-http://127.0.0.1:5000/
+Access the dashboard at: http://127.0.0.1:5000/
 
-🧠 How It Works
-Data Input: The user enters geometric values (e.g., Area: 56276, Perimeter: 888.24) into the web form.
+🔭 Roadmap
+Vision 2.0: Integration of Computer Vision (CNNs) for direct image-to-classification processing.
 
-Preprocessing: The backend loads the saved MinMaxScaler (scaler.pkl) to normalize the inputs to the same scale used during training.
+Edge Computing: Conversion to TFLite for deployment on IoT sorting hardware.
 
-Inference: The data is passed to the Random Forest model (model.pkl), which predicts the class (0 for Çerçevelik, 1 for Ürgüp Sivrisi).
+Global Expansion: Expanding the dataset to include Hulled and Styrian varieties.
 
-Visualization: The frontend triggers a "Processing Geometry" animation state while the server computes the result.
-
-Result: The final classification is displayed on a clean result card with a confidence summary.
-
-🔮 Future Scope
-Computer Vision Integration: Implementing CNNs to allow users to upload images of seeds for automatic feature extraction.
-
-Mobile Application: Developing a React Native version for on-field usage by farmers.
-
-IoT Connectivity: Linking the software with automated sorting machinery for industrial applications.
-
-📝 License
-This project is developed for educational purposes as part of the Artificial Intelligence Internship Program.
-
-Developed by Mohamadayan Desai
+Artificial Intelligence Internship Program | Project Portfolio
+Developed by Abhishek Magdum
