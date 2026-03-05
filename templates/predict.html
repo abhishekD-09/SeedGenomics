@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SGNX | Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="lab-container">
+        <main class="workspace">
+            <div class="top-bar">
+                <div class="logo-text">CLASSIFICATION_REPORT</div>
+                <a href="/" style="color: var(--text-dim); font-size: 12px; text-decoration: none; font-weight:700;">[ BACK TO TERMINAL ]</a>
+            </div>
+
+            <div class="result-display">
+                <p style="text-transform: uppercase; letter-spacing: 10px; color: var(--text-dim); font-weight:700;">Analysis Result</p>
+                <h1 class="classification-text">
+                    {{ prediction_text.replace("Your seed lies in ", "").replace(" class", "") }}
+                </h1>
+                
+                <div style="max-width: 600px; margin: 40px auto; padding: 30px; border: 1px solid var(--border); border-radius: 20px; background: white; box-shadow: 0 15px 35px rgba(0,0,0,0.03);">
+                    <p style="font-family: 'JetBrains Mono'; line-height: 1.8; color: var(--text-primary);">
+                        <span style="color: var(--accent); font-weight:bold;">></span> The neural network has correlated the provided geometric parameters with the morphological structure of the 
+                        <strong style="color: var(--accent)">{{ prediction_text.replace("Your seed lies in ", "").replace(" class", "") }}</strong> variety.
+                    </p>
+                </div>
+
+                <a href="/" class="analyze-btn" style="display: inline-block; text-decoration: none; padding: 20px 60px;">Begin New Scan</a>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

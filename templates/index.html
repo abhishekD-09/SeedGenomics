@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SGNX | Autonomous Seed Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="lab-container">
+        <aside class="sidebar">
+            <div class="nav-icon active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </div>
+            <!-- <div class="nav-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div> -->
+        </aside>
+
+        <main class="workspace">
+            <div class="top-bar">
+                <div class="logo-text">SEEDGENOMICS // ANALYTICS</div>
+                <!-- <div style="font-size: 12px; color: var(--text-dim);">SYSTEM STATUS: <span style="color:var(--accent); font-weight:700;">ONLINE</span></div> -->
+            </div>
+
+            <div class="content-area" id="form-view">
+                <div class="analysis-form-box">
+                    <h2 style="font-size: 28px; font-weight: 300;">Pumpkin <span style="font-weight: 700; color: var(--accent);">Classification</span></h2>
+                    
+                    <form action="/predict" method="POST" class="form-grid" onsubmit="showLoading()">
+                        <div class="input-wrapper">
+                            <label>Surface Area</label>
+                            <input type="number" step="any" name="Area" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Perimeter</label>
+                            <input type="number" step="any" name="Perimeter" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Major Axis</label>
+                            <input type="number" step="any" name="Major_Axis_Length" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Solidity</label>
+                            <input type="number" step="any" name="Solidity" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Extent</label>
+                            <input type="number" step="any" name="Extent" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Roundness</label>
+                            <input type="number" step="any" name="Roundness" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Aspect Ratio</label>
+                            <input type="number" step="any" name="Aspect_Ration" placeholder="0.0000" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Compactness</label>
+                            <input type="number" step="any" name="Compactness" placeholder="0.0000" required>
+                        </div>
+
+                        <button type="submit" class="analyze-btn">Execute Analysis Sequence</button>
+                    </form>
+                </div>
+
+                <div class="data-viz-side">
+                    <div class="stat-card">
+                        <label class="label-text" style="color:var(--text-dim); font-size: 10px; font-weight:700;">ENGINE CONFIDENCE</label>
+                        <div class="stat-val">98.84%</div>
+                        <div style="height: 6px; background: #edf2f7; border-radius: 3px; overflow:hidden;">
+                            <div style="width: 98%; height: 100%; background: var(--accent);"></div>
+                        </div>
+                    </div>
+                    <!-- <div class="stat-card">
+                        <label class="label-text" style="color:var(--text-dim); font-size: 10px; font-weight:700;">MODEL IDENTIFIER</label>
+                        <div class="stat-val" style="font-size: 14px; font-family: 'JetBrains Mono'; color: var(--text-dim);">RF-CLASSIFIER_V4</div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div id="loading-screen" style="display:none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                <div style="width: 100px; height: 100px; border-radius: 50%; display: grid; place-items: center; background: white; border: 4px solid #f0f2f5; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <div class="pulse-red" style="width: 40px; height: 40px; background: var(--accent); border-radius: 12px;"></div>
+                </div>
+                <h3 style="margin-top: 20px; font-family: 'Syncopate'; letter-spacing: 5px; color: var(--text-primary);">PROCESSING...</h3>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('form-view').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
